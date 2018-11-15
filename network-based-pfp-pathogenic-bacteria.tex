@@ -1,0 +1,150 @@
+\documentclass{article}
+
+% use this to switch to rendering the supplementary file:
+%\input{network-based-pfp-pathogenic-bacteria-supp.tex}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{subfig}
+
+%% Sets page size and margins
+% \usepackage[a4paper,top=1.5cm,bottom=1.5cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[margin=1in]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{xspace}
+\usepackage{authblk}
+\usepackage{natbib}
+%\usepackage[numbers,sort&compress]{natbib} % bibliography
+\usepackage{hyperref}
+\usepackage{sectsty}
+\usepackage{cleveref}
+\usepackage{enumerate}
+\usepackage{mathtools}
+
+% supplementary
+%\usepackage{xr}
+%\externaldocument{network-based-pfp-pathogenic-bacteria-supp}
+
+% theorems
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+% \newtheorem{corollary}{Corollary}[section]
+% \newtheorem{fact}{Fact}[section]
+% \newtheorem{proposition}{Proposition}[section]
+% \newtheorem{observation}{Observation}[section]
+\newtheorem{definition}{Definition}[section]
+
+% comments section*
+\usepackage{ifthen}
+\usepackage{color}
+\newboolean{draftmode}
+% is this a draft?
+% \setboolean{draftmode}{false}
+\setboolean{draftmode}{true}
+\ifthenelse{\boolean{draftmode}}{%
+  %% Macros for editorial comments
+  \newcounter{comments}
+  \newcommand{\jeff}[1]{\addtocounter{comments}{1}{\color{blue}[Jeff \thecomments: #1]}}
+  \newcommand{\murali}[1]{\addtocounter{comments}{1}{\color{cyan}[TMM \thecomments: #1]}}
+  \newcommand{\new}[1]{\addtocounter{comments}{1}{\color{red}[New \thecomments: #1]}}
+}{
+\newcommand{\jeff}[1]{}
+\newcommand{\murali}[1]{}
+%\newcommand{\new}[1]{{\color{Red} #1}}
+\newcommand{\new}[1]{{#1}}
+}
+\usepackage{xspace}
+% -------------- aliases ------------------------------
+\newcommand{\fmax}{\ensuremath{F_{\mathrm{max}}}\xspace}
+\newcommand{\pval}{\textit{p}-value\xspace}
+\newcommand{\pfp}{gene function prediction\xspace}
+\newcommand{\Pfp}{Gene function prediction\xspace}
+\newcommand{\SSN}{SSN\xspace}
+\newcommand{\FLN}{FLN\xspace}
+% algorithm names
+\newcommand{\sinksource}{SinkSource\xspace}
+\newcommand{\SSS}{SinkSource-Squeeze\xspace}
+\newcommand{\genemania}{GeneMANIA\xspace}
+\newcommand{\birgrank}{BirgRank\xspace}
+\newcommand{\localplus}{Local+\xspace}
+% names of statistics and evaluations
+\newcommand{\ktau}{Kendall's $\tau$\xspace}
+\newcommand{\loso}{LOSO\xspace}  % possibly leave-one-species-out
+\newcommand{\eval}{E-value\xspace}
+\newcommand{\evals}{E-values\xspace}
+% the e represents exponent
+\newcommand{\e}[1]{\ensuremath{1\times{}10^{#1}}\xspace}
+\newcommand{\fig}{Fig.\xspace}
+\newcommand{\etal}{\textit{et al}.\xspace}
+% math aliases
+%\newcommand{\vec}[1]{\ensuremath{\mathbf{#1}}\xspace}
+\newcommand{\fvec}{\ensuremath{\mathbf{f}}\xspace}
+\newcommand{\yvec}{\ensuremath{\mathbf{y}}\xspace}
+\newcommand{\svec}[1]{\ensuremath{\mathbf{s}^{(#1)}}\xspace}
+\renewcommand\vec{\mathbf}
+% SinkSource Squeeze aliases
+\newcommand{\su}[1]{s^{(#1)}(u)}
+\newcommand{\sv}[1]{s^{(#1)}(v)}
+\newcommand{\ubar}[1]{\text{\underline{$#1$}}}
+\newcommand{\LB}{\ubar{\mathbf{s}}}
+\newcommand{\LBi}[1]{\ubar{\mathbf{s}^{(#1)}}}
+\newcommand{\LBu}{\ubar{s}(u)}
+\newcommand{\UB}{\bar{\mathbf{s}}}
+\newcommand{\UBu}{\bar{s}(u)}
+
+\begin{document}
+
+\title{Accurate and Efficient Network-based Gene Function Prediction for Pathogenic~Bacteria}
+\author[1]{Jeffrey N. Law}
+\author[2]{Shiv D. Kale}
+\author[3]{T. M. Murali}
+\affil[1]{Genetics, Bioinformatics, and Computational Biology Ph.D. program, Virginia~Tech, Blacksburg VA}
+\affil[2]{Biocomplexity Institute, Virginia Tech, Blacksburg VA}
+\affil[3]{Department of Computer Science, Virginia Tech, Blacksburg VA}
+%\affil[4]{ICTAS Center for Systems Biology of Engineered Tissues, Virginia Tech, Blacksburg VA}
+\date{}
+
+\maketitle
+
+\section{Introduction}
+
+\input{introduction.tex}
+
+
+\section{Methods}
+
+\input{methods.tex}
+
+
+\section{Results}
+
+\input{results.tex}
+
+
+\section{Discussion}
+
+% Ripple: not going to include
+% We also implemented the Ripple method for finding the top-k predictions for each GO term, but found that for GO terms with many annotations (50+) almost the entire network needed to be explored before the top-k could be ensured. For GO terms with less annotations, we found that the overhead associated with getting submatrices caused Ripple to take as long as runing regular sinksource.
+
+\murali{Why use any more than three (Jeff says that with $\alpha=0.8$, even three iterations gives similar F-max distributions as 10 iterations or continuing till convergence) or 10 iterations (AptRank)? Why worry so much about making the intervals spanned by lower and upper bounds distinct? We have to thrash out this point.}
+
+%\subsection{Scaling-up}
+
+
+\bibliography{csb}
+\bibliographystyle{unsrt}
+
+
+
+%\input{network-based-pfp-pathogenic-bacteria-supp.tex}
+\input{supp.tex}
+
+\end{document}

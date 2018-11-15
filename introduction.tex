@@ -1,0 +1,103 @@
+
+%Thousands of prokaryotic genomes have been fully sequenced thanks, in large part, to the relatively small cost of DNA-sequencing. 
+The number of fully sequenced prokaryotic genomes is increasing at an exponential rate as the cost of DNA sequencing \murali{Using sequencing/ed twice in this sentence.} continues to drop~\cite{land-ussery-20-years-bact-seq-2015}.
+However, there is no experimental knowledge of the biological function of the overwhelming majority of the genes in these genomes. 
+%\murali{For instance, ... Cite recent paper in PLoS Biology that functions of many human genes are not known.}
+Specifically, less than 0.1\% of the genes in the UniProt Knowledgebase have a Gene Ontology (GO) annotation with an experimental evidence code. 
+
+Several computational methods have been developed to address this challenge.  Techniques for gene function prediction automatically associate GO terms with genes. These methods have become essential resources to supplement existing annotations. More importantly, they assist in prioritizing follow-up experiments that can determine the biological function of genes~\cite{chang-steffen-combrexdb-nar-2015}. 
+The overwhelming majority of \pfp methods operate on one of two paradigms: i) Predicting one function at a time (term-based), one species at a time~\cite{youngs-bonneau-better-negatives-pfp-bioinfo-2013,wang-pang-clusdca-exploit_ontol_graph-bioinfo-2015,cho-peng-mashup-cellsys-2016,gligorijevic-bonneau-deepnf-bioinfo-2018}, or ii) one gene at a time (gene-based)~\cite{cozzetto-jones-pfp-massive-integration-bmcbioinfo-2013,piovesan-tosatto-inga-nar-2015,Jiang-Gribskov-AptRank-protein-function-prediction-bioinfo-2017,yunes-babbitt-effusion-seq-sim-net-bioinfo-2018,zhang-zhang-metago-jmb-2018}.   % Additional methods: PhyloPFP(?)
+Gene-based methods work well for a small set of genes of interest, however making predictions on a genome-wide scale can quickly become infeasible.
+Term-based methods have the potential to scale-up to multiple species as they are often able to make predictions for all genes simultaneously for a given function, however it is often not clear how to adapt them for multi-species predictions.
+%In the CAFA2 challenge~\cite{jiang-radivojac-cafa2-eval-function-prediction-gb-2016}, one of the teams (PULP) expanded a term-based, network propagation method to make predictions for multiple species by connecting many information-rich, single species networks using sequence similarity with other related species and achieved within the top-10 submissions in several evaluations. 
+%Their method, named PULP, achieved the top-10 out of close to 50 submissions in several of the CAFA2 evaluations. 
+%\jeff{Their approach is only described in Noah Young's PhD Dissertation.}
+% Their work was somewhat limited as the largest group of species for which they made predictions was limited to 10 bacterial species and for only a subset of GO terms. 
+%% They had 7 groups consisting of a total of 27 species.
+%% We believe their approach was limited as they kept only the top 100 sequence-similarity edges (from InParanoid) for each node.  
+
+% Network-based predictions
+A powerful and widely-used approach for term-based \pfp starts by constructing a functional linkage network (\FLN) where each node corresponds to a gene and each edge connects a pair of genes that may share the same function. 
+%Several methods have been developed to integrate multiple data types to build these networks~\cite{mostafavi-morris-fast-integration-bioinfo-2010,youngs-bonneau-better-negatives-pfp-bioinfo-2013,franceschini-jensen-string-v9.1-nar-2012}. However, an edge typically does not indicate which function the connected genes share. 
+A complementary set of algorithms have been developed \murali{Remove passive voice} to propagate labels (i.e., assignments of GO terms) across the network from genes with known functions to those with unknown function~\cite{DZM+03,LK03,VFM+03,karaoz-kasif-whole-genome-annotation-pnas-2004,weston-noble-protein-ranking-pnas-2004}.
+%Several methods have been developed to integrate multiple data types to build these networks~\cite{mostafavi-morris-fast-integration-bioinfo-2010,youngs-bonneau-better-negatives-pfp-bioinfo-2013,franceschini-jensen-string-v9.1-nar-2012}. However, an edge typically does not indicate which function the connected genes share. 
+%\murali{Two papers by Deng et al predate even Letovsky and Kasif but are largely forgotten now. I don't remember the co-authors. These appeared in the 2001--2003 timeframe.} \jeff{I added the 2003 paper}
+%This area of research remains very active~\cite{cowen-sharan-network-propagation-amplifier-2017}. For example, recent new techniques propagate functional information across an integrated network that combines the \FLN with the GO hierarchy or use lower-dimensional embeddings~\cite{Jiang-Gribskov-AptRank-protein-function-prediction-bioinfo-2017,cho-peng-mashup-cellsys-2016}. 
+% mostafavi-morris-genemania-gb-2008,murali-katze-network-based-prediction-hiv-ploscb-2011,
+
+
+
+
+%Inspired by these trends, we have two major goals in this paper. 
+We have two major goals in this paper. 
+First, we seek to predict gene function on a genomewide scale by combining information from multiple species simultaneously.  We propose to use network-based algorithms for this task %\pfp. 
+\murali{We need to motivate the size issue better since most of the networks we present in this paper have size similar to the AptRank network.}
+Recent \pfp methods have been evaluated on data for individual organisms, with \FLN sizes 
+around 15K nodes and 1.5M edges~\cite{Jiang-Gribskov-AptRank-protein-function-prediction-bioinfo-2017,cho-peng-mashup-cellsys-2016}. 
+Multi-species \FLN{}s constructed with multiple types of data can rapidly become orders of magnitude larger than networks for a single species. Therefore, network-based methods for \pfp must be able to scale appropriately to these large datasets. Accordingly, our second goal is to develop label propagation algorithms for \pfp that achieve high efficiency without sacrificing accuracy.
+
+
+%\murali{I think we can do away with or shorten this para considerably.}
+%Network-based label propagation methods usually operate in a ``term-based'' approach, on one GO term at a time. Nodes corresponding to genes annotated to that GO term or to a descendant term serve as positive examples. The methods may also define negative examples. \murali{Add an example of a way of defining negative to this sentence.} Every other node in the network is an unknown example. The goal of any label propagation algorithm is to compute a score for each unknown example, with a higher score corresponding to a larger likelihood that the node should be annotated to the GO term. 
+% % A wide variety of strategies have been used to perform label propagation in this overall framework.
+% %Local methods use the notion of guilt-by-association to transfer scores to immediate neighbors in the network.
+% %Hopfield networks apply the local-rule repeatedly and serially to all nodes until the labels do not change~\cite{HT86}.
+% %\murali{Jeff, what are the main strategies? Even if we don't discuss them further in this paper, a detailed exposition will be important for your thesis. One is just the local rule. Another is Hopfield networks. We also have probabilistic methods based on Markov Random Fields (Letovsky, Kasif), SVMs (Troyanskaya, Schapire), RWR, haromic functions (SinkSource), flow-like (FunctionalFlow) GeneMania's strategy, APTRank. I am sure there are several more since I have not followed this literature since 2011.} 
+% GeneMANIA, one of the most widely used,
+% %first integrates multiple heterogeneous networks using ridge regression, then
+% utilizes Gaussian Random Field label propagation~\cite{zhou-learning-2004} with labeled negative examples to make term-based predictions~\cite{mostafavi-morris-genemania-gb-2008}.  
+% Another approach called SinkSource works farily similarly to GeneMANIA, however, it is slightly simpler in that it does not allow the scores of the positive and negative examples to change~\cite{murali-katze-network-based-prediction-hiv-ploscb-2011}.
+% A more recent method called AptRank (Adaptive PageRank) combines the \FLN with the GO hierarchy into a bi-relational graph, then uses PageRank/RWR to diffuse annotation information in a protein-based approach. 
+% %We do not give a formal review here, but point interested readers to recent reviews of the subject~\cite{cowen-sharan-network-propagation-amplifier-2017,cruz-pfp-review-func-genomics-2017}. \jeff{Probably not appropraite here.} 
+
+
+% A common approach to compute prediction scores for network propagation methods is to use power iteration to compute the product of an exponent of an appropriately defined matrix with a vector. Upon convergence, the final product represents the desired node scores. The standard way to check convergence numerically is to ensure that the largest (relative) difference of each node's score between two consecutive iterations is
+% % upper-bounded by a specified small constant.
+% smaller than a specified constant $\epsilon$.
+% In this work, we construct \FLN{}s that contain millions to tens of millions of edges, and tens to hundreds of thousands of nodes. 
+% For such massive networks, it is unclear what values of the constant $\epsilon$ are appropriate for checking convergence, how many iterations are necessary before convergence, or how accuracy of the final node scores may be affected by using a small number of iterations.
+
+% Speed-up background
+In order to speed-up network propagation prediction methods, we look to the many improvements to one of the most popular propagation methods, PageRank or random walk with restarts (RWR)~\cite{page-brin-pagerank-1999}.
+%Since the introduction of PageRank (or random walk with restarts, RWR)~\cite{page-brin-pagerank-1999}, one of the most popular propagation methods, 
+%the need for speed and efficiency to handle larger and larger datasets has resulted in many improvements to the method.
+Developments include limiting computations to compute the top-k nodes with the highest scores~\cite{zhang-han-ripple-fast-topk-rwr-kdd-2015,fujiwara-onizuka-efficient-pagrank-kdd-2012,fujiwara-onizuka-castanet-pagrank-kdd-2013},
+speeding up power iteration to quickly reach accurate scores~\cite{coskun-koyuturk-chopper-kdd-2016},
+and efficiently preprocessing the graph to improve the speed for multiple queries~\cite{jung-kang-bepi-billion-scale-rwr-2017}.
+%Unfortunately many of these developments have not yet reached the network propagation-based function prediction algorithms making large-scale predictions with current methods difficult or infeasible.
+% \jeff{better citations here}
+
+% Methods to integrate multiple data types into a single network have also been improved (i.e., GM 2008 to GM 2010, mashup, deepNF). 
+
+% large networks
+
+% epsilon
+%Traditionally, network propagation methods such as PageRank continue to perform power iteration until the maximum difference of node scores from one iteration to the next is smaller than some parameter $\epsilon$, essentially claiming the scores have converged enough to stop.
+% from the abstract:
+%As networks become larger and larger, many questions related to this stopping criteria arise.
+%What values of $\epsilon$  are appropriate for massive networks?
+%How many iterations will be needed to reach a difference of $\epsilon$?
+%How much will the performance change by decreasing the number of iterations?
+%\jeff{Highlight the need for faster methods.}
+
+% Our contribution
+We present a method to speed-up a term-based network propagation method called \sinksource by applying an adaptation of a method for finding the top-k RWR scores called Squeeze~\cite{zhang-han-ripple-fast-topk-rwr-kdd-2015}.
+We show that by adding an insulation parameter to \sinksource \murali{What is \sinksource? A reader may not know it.} and by limiting the number of iterations used to compute prediction scores, we are able to decrease the running time by a factor of 50 or more without sacrificing prediction accuracy.
+We provide a strategy to determine an appropriate number of iterations required for a given network and set of annotations.
+
+As a proof of concept, we selected 19 clinically-relevant pathogenic bacteria and created a multi-species network based on protein sequence similarity (Sequence Similarity Network, \SSN). We integrated this network with species-specific functional association networks for each pathogen from STRING. 
+% how many of the exp annotations are contained in the 19-species network
+We then scaled-up to include a total of 200 bacteria.
+% we then scaled-up to a \SSN of 
+
+% from the ismb abstract:
+%We hypothesized that the integrated network would have higher predictive power, despite the large network size and sparsity of annotated nodes.
+%We evaluated the ability of multiple network-based prediction algorithms to predict annotations with experimental evidence codes, and annotations with experimental or curator-reviewed computational analysis evidence codes using a leave-one-species-out validation. We found that the \sinksource algorithm consistently outperformed (higher \fmax values) GeneMANIA, AptRank \jeff{TODO}, and other BLAST-based methods
+%\jeff{across a range of E-value cutoffs and with and without STRING}.
+%These results demonstrate that integrating multiple types of data improves predictive power for experimental-based annotations.
+
+We performed \pfp using three propagation methods, SinkSource, GeneMANIA, and BirgRank.
+%, that propagate evidence across the entire network from genes annotated with a GO term (positives) to genes not known to have the function (unknowns). 
+We compared these methods against a baseline which we call \localplus where each gene's prediction score for a GO term is the weighted average of the scores of its neighbors. \localplus mimics a very basic procedure for assigning GO term annotations to a query gene $q$: use BLAST to determine if $q$'s sequence  is similar to that of a gene $q'$ in another organism and then transfer the annotations of $q'$ to $q$.
+%
+We evaluated these methods with a new type of evaluation which we call Leave-One-Species-Out (LOSO).

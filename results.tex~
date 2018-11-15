@@ -1,0 +1,236 @@
+
+We primarily investigate and discuss the annotations in the Biological Process (BP) category in the main text. The results for the evaluation of Molecular Function (MF) can be found in the supplementary material.
+
+\subsection{Trade-off of Accuracy vs Speed}
+
+
+
+%\murali{State the goals of the experiment (We first ...), then the way you performed the experiment, then refer to the figure and describe, the results.}
+We first sought to test the trade-off of accuracy for speed by varying the \sinksource parameter $\alpha$ and the stopping criteria.
+We explored the effect of $\alpha$ on the accuracy of \sinksource by comparing the \fmax distributions from 5-fold cross-validation (using annotations with experimental evidence codes) for six different $\alpha$ values from 1.0 to 0.5 (see \fig \ref{fig:sinksource-speed-vs-accuracy}). 
+In this evaluation, we ran \sinksource until all node rankings were fixed.
+For $\alpha = 1.0$, the Squeeze upper bound yields a trivial upper bound of unity on the score in each iteration. Therefore we stopped \sinksource after 1000 iterations, double the number of iterations required to fix the rankings for $\alpha = 0.9$, which resulted in an average $\epsilon$ of \e{-4} (data not shown).
+The addition of the $\alpha$ parameter does cause a slight drop in accuracy, but comparing the 1.0 and 0.8 distributions, the decrease is not statistically significant (uncorrected rank-sum \pval 0.08.
+We note that the rank-sum test could lead to overly-optimistic \pval{}s as GO terms are not fully independent from each other).
+We recognize the choice of $\alpha$ for \sinksource is somewhat arbitrary and depends on specific use cases. In our experiments, for $\alpha < 0.8$, the rank-sum \pval fell below 0.05, therefore we chose to use an $\alpha$ of 0.8 for subsequent analyses. 
+% and the total number of iterations 
+
+% # of iterations
+Next we sought to compare how limiting the number of iterations has an effect on the node rankings and \fmax distributions.
+We ran \sinksource once until all nodes had distinct or separate upper and lower bounds from each other. 
+This gave us the fixed ordering or ranking of all nodes. 
+We then repeated \sinksource, and at each iteration, compared how well the current node ranking matches the fixed ranking using a rank correlation measure called \ktau.
+%, and the largest stretch of nodes with overlapping upper or lower bounds. 
+The \ktau statistic will inform us of how many iterations are needed to approximate the fixed ranking.
+
+Interestingly, even though around 400 iterations are required to ensure the rankings are correct for all GO terms, the nodes already have the same ranking for all GO terms by about 200 iterations (see \fig \ref{fig:sinksource-speed-vs-accuracy}b, \ktau of 1.0).
+% precision problem:
+% This is partially due to the limited 80-bit precision of numpy.  At about 200 iterations, the maximum precision for node scores is reached, and the maximum difference of node scores from one iteration to the next drops to 0 meaning the node scores cannot be approximated any better. Squeeze maintains a single value $x$ to compute the upper bound for all nodes which is the lower bound plus $x$. The upper bound value $x$ does not require many digits to compute, and can be stored with leading zeros meaning it does not suffer from loss of precision allowing us to better approximate it the upper bounds. After 400 iterations, the upper-bound is small enough to ensure the nodes have distinct upper and lower bounds. As we are primarily concerned with the values of the first few digits and not the full precision, we decided not to bother computing the full precision on a platform such as matlab 
+Even more striking, after only 10 iterations, a high \ktau of 0.95 is already reached \jeff{interpretation of \ktau?}.
+Additionally, limiting the number of iterations does not significantly affect the \fmax distribution (see \fig \ref{fig:sinksource-speed-vs-accuracy}c).
+This means we can safely limit the number of iterations without losing accuracy.
+% running time
+The running time for \sinksource with $\alpha = 1.0$ for 1000 iterations was \murali{State the time in minutes}, whereas the running time for 20 iterations with $\alpha = 0.8$ was \murali{state the time}, a speed-up up of a factor of \murali{Exact factor here.}  (\fig \ref{fig:sinksource-speed-vs-accuracy}d).
+\jeff{what's the \ktau of alpha=0.8 compared to alpha=1.0}?
+We chose to run \sinksource for 20 iterations in all subsequent analyses.
+
+% additional analyses
+%In the supplementary material, we compare how many iterations it takes to reach standard $\epsilon$ cutoffs as well as the distribution of \ktau at those cutoffs. 
+%We also took into consideration how much of an effect number of iterations as well as the $\alpha$ parameter have on the results and find they do not have a significant effect (see \fig \ref{fig:sinksource-speed-vs-accuracy}a,c). 
+
+
+% expc-rem-neg-comp-iea
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{figs/fig1-2018_06-seq-sim-e0_1-expc-rem-neg-comp-iea-50-1000-bp.pdf}
+    \caption{Trade-off of accuracy vs. speed for \sinksource on the 19 bacterial species \SSN (\eval <= 0.1) with XX BP GO terms ($\ge 10$ annotations). 
+      %Performance is measured by computing the \fmax on a GO term by GO term basis. Here we used annotations of BP GO terms with experimental evidence codes
+      (\textbf{a}) Variation of \fmax distributions with $\alpha$.
+      (\textbf{b}) Number of iterations required to fix all rankings, or to reach the specified \ktau in comparison to the fixed ranking.
+      (\textbf{c}) Comparison of \fmax distributions by varying the number of iterations ($\alpha=0.8$).
+      (\textbf{d}) Total time taken by \sinksource during cross-validation (shown in a and b) while varying $\alpha$ or the number of iterations with $\alpha=0.8$. Colors correspond to the colors used in \textbf{a} and \textbf{c}.
+    }
+    \label{fig:sinksource-speed-vs-accuracy}
+\end{figure}
+
+
+\subsection{Leave-One-Species-Out Evaluation}
+We chose to compare three network propagation methods to \localplus and to each other using a leave-one-species-out (LOSO) evaluation strategy.
+In this evaluation, we iteratively leave out the annotations of all proteins of a single species, and use the annotations of the other 18 species to make predictions for the left-out species (see \fig \ref{fig:leave-one-species-out}).
+We chose to use this evaluation rather than a more traditional cross-validation to mimic the challenge of making large-scale functional predictions for the genomes of newly sequenced species where none of the proteins have any previous annotations \jeff{although we find similar conclusions with CV}. 
+We first compared the effect of using different \eval cutoffs as
+% this can drastically change the size of the network (see Table \ref{tab:net-sizes}), with the largest \SSN containing over 2M edges, and
+relatively high \evals can lead to spurious prediction results \jeff{TODO find citation}.
+Next we integrated multiple data sources from STRING to improve predictions and assess their value at various cutoffs. 
+
+% evidence codes
+In these evaluations, we used annotations with an experimental evidence code only.
+However, as only a few species have a decent amount of experimentally-based annotations, we also expanded our evaluation to include annotations with either an experimental, or computational evidence code as defined above.
+% A total of 9 species have at least one GO term for which 10 or more proteins are annotated.
+Lastly, we included all annotations regardless of evidence code to compare predictions made for all species. 
+
+
+\subsubsection{Effect of BLAST cutoffs}
+% BLAST cutoff makes a big difference for BP and MF
+% network propagation still helps
+
+
+We first compared the effect of using different \eval cutoffs as this can drastically change the size of the network (see Table \ref{tab:net-sizes}), with the largest \SSN containing over 2M edges.
+When working with large networks, an initial assumption may be to limit the number of edges using a stringent cutoff, and allow the propagation methods to make predictions using the edges with relatively high homology. 
+Such an approach is common when using a co-expression network \jeff{cite}.
+Additionally, intuition would suggest that including many edges with relatively low homology would lead to more false positives. 
+
+We tested cutoffs of \e{-25}, \e{-15}, \e{-6}, $0.1$, 5, 20 and 50 to evaluate at which cutoff do we achieve the best performance.
+We found that as we raise the \eval cutoff from \e{-25} to $0.1$, the performance gradually improves with an total median \fmax increase $> 0.1$ %from an \eval of \e{-25} to $0.1$ 
+for all algorithms (See \fig \ref{fig:loso-results-exp}a,b.
+Increasing the \eval cutoff higher than $0.1$ does not increase the \fmax distributions any further.
+See supplementary for comparison to cutoffs of \e{-15} and \e{-6}).
+%Comparing the results of using an \SSN built from an \eval cutoff of \e{-25} to results obtained from an \SSN with a cutoff of $0.1$, we see that using a less-stringent cutoff greatly improves the median \fmax for all algorithms (median \fmax improvement of $> 0.1$. See Fig. \ref{fig:results-seq-sim-exp}).  
+
+We also observe that network propagation methods gain more of an advantage over local neighbor methods for the more stringent \e{-25} cutoff than the 0.1 cutoff, however we still see a significant improvement at the less stringent cutoff. 
+
+\begin{figure}[htb]
+    \centering
+    %\jeff{figure placeholder}
+    \includegraphics[width=\textwidth]{figs/fig2-expc-compare-eval-fmax-sinksource-localplus.pdf}
+    \caption{
+      Comparison of \fmax results for the \loso evaluation across four algorithms and three networks.
+      (\textbf{a}) \SSN (\eval $\le$ \e{-25}),
+      (\textbf{b}) \SSN (\eval $\le$ 0.1),
+      (\textbf{c},\textbf{d},\textbf{e}) \SSN (\eval $\le$ 0.1) integrated with STRING,
+      (\textbf{d}) \loso results for each of the individual species. For each species, the number of BP GO terms with $\ge$ 10 annotations is shown in parentheses.  The species name is bold if the difference between the distributions for \sinksource and \localplus was statistically significant (rank-sum BF-corrected \pval $< 0.05$). The right-hand side shows the number of GO term-annotation pairs for each species.
+    315 total BP GO terms have at least 10 annotations in the left-out species. 
+    (\textbf{e}) Difference in \fmax between \sinksource and \localplus by the \fmax of \sinksource for each GO term. Species names in \textbf{d} are abbreviated as follows:
+    \textit{Escherichia coli K-12} (Ec),
+    \textit{Mycobacterium tuberculosis} (Mt),
+    \textit{Neisseria gonorrhoeae} (Ng),
+    \textit{Pseudomonas aeruginosa} (Pa),
+    \textit{Salmonella enterica} (Se),
+    \textit{Vibrio cholerae} (Vc),
+    \textit{Yersinia pestis} (Yp).
+    %Comparison of using a \SSN with a cutoff of $1\times{}10^{-25}$ vs. a cutoff of $0.1$. The \fmax results for each individual species are combined and shown in a single box-plot for each algorithm.}
+    }
+    \label{fig:loso-results-exp}
+\end{figure}
+
+
+\subsubsection{Incorporating STRING for better predictions}
+%Techniques which utilize multiple complementary data sources have been shown to be more accurate than those that use a single data source~\cite{jiang-radivojac-cafa2-eval-function-prediction-gb-2016, cozzetto-jones-pfp-massive-integration-bmcbioinfo-2013, gligorijevic-bonneau-deepnf-bioinfo-2018}.
+%The STRING database is a great resource for multiple types of data (such as co-expression, protein-protein interactions)  available for many species \jeff{cite STRING}. A total of 14 out of 19 of our bacterial species have a matching strain in STRING. 
+%We utilized six of the networks available in STRING (neighborhood, fusion, cooccurence, coexpression, experiments, and database).
+%To integrate the STRING networks with each other and with the sequence similarity network, we tried multiple methods. 
+%Ultimately we found the original method proposed by Mostafavi and Morris in 2008 where individual networks are given a score based on how well they agree with the positives and negatives of a given GO term, and then combined into a single network, performed the best \cite{mostafavi-morris-genemania-gb-2008}.
+
+We also sought to compare the effect of varying the cutoff for the quality of associations in STRING networks.
+%cutoffs as this can drastically change the size of the network (see Table \ref{tab:net-sizes}), with the largest network containing over 7.8M edges.
+Interestingly, we don't observe the same trend for STRING networks as we do for the \eval. After evaluating low, medium and high stringency cutoffs (150, 400 and 700 respectively), we find that using a cutoff of 400 gives a slight improvement over a cutoff of 150 and 700 (see supplementary) and used a cutoff of 400 for the rest of the analyses with STRING.
+
+When incorporating STRING with the \SSN, we see that \localplus does not benefit from these intra-species edges as they add connections only to other unknowns (all annotations of the species were left-out).
+The inclusion of STRING for MF GO terms slightly decreases the performance (see supp.) suggesting that the data in STRING is not useful above sequence homology for predicting MF. 
+On the other hand, \sinksource and GeneMANIA are able to utilize the additional information to improve predictions, increasing the median \fmax by about 0.05 for BP over using the \SSN only (see \fig \ref{fig:loso-results-exp}b vs. c). 
+
+Table \ref{tab:loso-runtimes} contains the running times for each of the algorithms for the entire \loso evaluation
+
+
+\subsubsection{Species-specific results}
+Looking at the species-specific results, we see that in four out of seven species, \sinksource has a statistically significant improvement over \localplus (bold names in \fig \ref{fig:loso-results-exp}d).
+GeneMANIA and \sinksource perform fairly similarly likely due to how similar the algorithms are.
+
+We also see quite a lot of variation between species. 
+Upon inspection of the number of annotations for each species, there seems to be a trend where the more annotations that are left-out or that we're trying to predict, the more difficult the problem becomes, which makes sense.
+
+However, \textit{M. tuberculosis} does not seem to follow suit. One hypothesis is that it is simply not as closely related to the other species, and is therefore more difficult to recover its annotations compared to the other species. Upon closer inspection of the phylogenetic tree of these 19 species, we see that \textit{M. tuberculosis} is the most distant, being the only species from the \textit{Actinobacteria} phylum.
+
+% wide spread
+We note there is a wide spread of prediction quality with the boxplot whiskers ranging from an \fmax of 0 to 1. 
+This is likely due to the fact that we consider GO terms with a wide range of specificities, our \fmax values also span a wide range.
+However, the main point we seek to address is whether or not there is a systematic GO term by GO term difference between \sinksource and \localplus which is what we observe in \fig \ref{fig:loso-results-exp}e.
+
+
+\subsubsection{Improvement of \sinksource over \localplus}  %Network Propagation over Neighbors Only}
+We sought to examine in more depth how often, and why the network propagation methods \sinksource and GeneMANIA are gaining an advantage over \localplus.
+Directly comparing the \fmax values of \sinksource and \localplus for each GO term individually, we see that for over 74\% of the GO terms, network propagation offers an improvement in prediction performance over only considering immediate neighbors (see \fig \ref{fig:loso-results-exp}) (XX\% for GeneMANIA).
+\jeff{What about for MF?}
+
+We also observe a trend that as the \fmax values for \localplus increase, the improvement of \sinksource over \localplus increases also increases. 
+This suggests that as the number of positives neighboring left-out positives increases, network propagation is able to better utilize the additional information.
+But when there are little to no positives nearby (low \localplus \fmax), \sinksource also does poorly.
+%This seems to suggest that network propagation methods are better able to distinguish positive examples from negative examples by utilizing multiple short paths around the positives.  
+
+Looking more into why network propagation does better, we examined the distance of the left-out positives to the positives in the network.  
+We found that in the cases where network propagation does better, there are multiple short paths (length 2-3) to the positives, distinguishing left-out positives from other proteins (left-out negatives). 
+\jeff{Figure showing for an example GO term (or many GO terms) the distances of left-out positives to training positives?}
+Figure \ref{fig:sos-response-sinksource-vs-localplus} shows a simple example where for 5 out of 15 \textit{P. aeruginosa} proteins annotated to the GO term ``SOS response'' (GO:0009432), there is no direct connection to a positive causing them to be missed by \localplus, yet \sinksource is able to rank them highly~\jeff{Need to include the fifth node}.
+We chose this GO term as an example as it has a large \fmax improvement (0.18) for \sinksource over \localplus (0.93 and 0.75 respectively), a relatively small number of annotations (making it easier to visualize) and it has been shown to be involved in resistance to antibiotics~\jeff{include description from paper(s)}.
+
+Another benefit of network propagation is the fact that the ranks for \localplus stop at 43 as all nodes after 42 are tied with a score of 0, whereas \sinksource is able to give scores for almost all of the 5,575 \textit{P. aeruginosa} proteins.
+%This is a bit of a simple 
+
+\begin{figure}[htb]
+    \centering
+    %\jeff{need to fix figure headings}
+    \includegraphics[width=\textwidth]{figs/fig4-sinksource-vs-localplus-sos-response.pdf}
+    %\jeff{Add a scatterplot or something of the number of iterations and the median \fmax. Also add # of iterations and time taken}
+    \caption{\sinksource comparison to \localplus. 
+    Node rankings for left-out positives (blue) of \textit{P. aeruginosa} for example GO term "SOS response" GO:0009432. Nodes are colored by their rank.
+    (a) \sinksource, (b) \localplus. \localplus is only able to give scores to 43 nodes, while \sinksource gives scores to almost all of the 5,575 \textit{P. aeruginosa} proteins.
+    Species abbrev. same as in the caption of \fig \ref{fig:loso-results-exp}.
+    }
+    \label{fig:sos-response-sinksource-vs-localplus}
+\end{figure}
+
+
+\subsubsection{BirgRank results}
+\jeff{move to discussion}
+BirgRank unfortunately did not perform as well as the other methods in our \loso evaluations. 
+In the original evaluations of Jiang \textit{et al.}, they performed an evaluation where they whithheld all annotations from a given percentage of proteins and compared the ability of different algorithms to recover them. 
+They observed that in this evaluation, their methods (BirgRank and AptRank) were not able to do better than GeneMANIA and other methods. 
+Our \loso evaluation seems to have exacerbated the problem for BirgRank. 
+We varied the $\alpha$, $\gamma$ and $\theta$ parameters but did not observe any improvement (results not shown).
+\jeff{For five-fold cross-validation, BirgRank performed much better than \sinksource and GeneMANIA (resuls not shown)}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l|r|l}
+    Method & Total Time (min) & Solver \\
+    \hline
+    \sinksource & 10.4 & 20 Iterations, $\alpha=0.8$ \\
+    GeneMANIA   & 45.5 & Conjugate Gradient \\
+    BirgRank    & 16.8 & Power Iteration ($\epsilon=0.0001$) \\
+    \localplus  & 0.5  & 1 Iteration \\
+    \end{tabular}
+    \caption{Runtimes of the four methods in minutes (\loso, BP \& MF annotations with experimental evidence codes)) along with the type of solver used for each method.}
+    \jeff{GeneMANIA used multiple processes (8)}
+    \jeff{TODO times of weighting methods. SWSN: 6.4 min, indv GO terms 14.4 min (SS and \localplus), GM indv 39.9 min}
+    \label{tab:loso-runtimes}
+\end{table}
+
+
+% EXPC + COMP, evaluate COMP
+% EXPC + COMP + IEA, evaluate IEA
+\subsubsection{Leave-one-species-out Evaluation with Computational and Electronic Evidence Codes}
+
+\begin{figure}[htb]
+    \centering
+    %\jeff{need to fix figure headings}
+    \includegraphics[width=\textwidth]{figs/fig3-expc-comp-iea.pdf}
+    %\jeff{Add a scatterplot or something of the number of iterations and the median \fmax. Also add # of iterations and time taken}
+    \caption{
+      Comparison of \fmax results for the \loso evaluation for different evidence codes using the \SSN (\eval $\le$ 0.1) integrated with STRING.
+      (\textbf{a}) Predictions made with EXP and COMP evidence codes, evaluation on COMP evidence codes of the left-out species.
+      (\textbf{b}) Predictions made with EXP and COMP evidence codes, evaluation on ELEC evidence codes (IEA) of the left-out species.
+    }
+    \label{fig:loso-results-expc-comp-iea}
+\end{figure}
+
+
+%\subsection{Temporal Holdout Evaluation}
+%June 2016 - September 2017
+
+\subsection{Scaling-up to 200 bacterial species}
+
+To test the ability of our methods to scale to include many more species, we built a \SSN with 200 bacterial species. 
+%These species were chosen based on the criteria 
+We chose the top 200 bacterial species with the most GO annotations with experimental and computational evidence codes. 
+These species had a wide range of genome sizes varying from X to X protein-coding genes \jeff{TODO}. 
+We also used an \eval cutoff of 0.1 for this \SSN, which yielded a network with 815K total proteins and 73M edges.

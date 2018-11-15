@@ -1,0 +1,486 @@
+
+@article{ballouz-gillis-egad-bioinfo-2017,
+  author =	 {Sara Ballouz and Melanie Weber and Paul Pavlidis and
+                  Jesse Gillis},
+  title =	 {Egad: Ultra-Fast Functional Analysis of Gene
+                  Networks},
+  journal =	 {Bioinformatics},
+  volume =	 {nil},
+  number =	 {nil},
+  pages =	 {btw695},
+  year =	 2016,
+  doi =		 {10.1093/bioinformatics/btw695},
+  url =		 {https://doi.org/10.1093/bioinformatics/btw695},
+  DATE_ADDED =	 {Tue Aug 7 10:51:09 2018},
+}
+
+
+@article{yunes-babbitt-effusion-seq-sim-net-bioinfo-2018,
+  author =	 {Jeffrey M Yunes and Patricia C Babbitt},
+  title =	 {Effusion: Prediction of Protein Function From
+                  Sequence Similarity Networks},
+  journal =	 {Bioinformatics},
+  volume =	 {nil},
+  number =	 {nil},
+  pages =	 {nil},
+  year =	 2018,
+  doi =		 {10.1093/bioinformatics/bty672},
+  url =		 {https://doi.org/10.1093/bioinformatics/bty672},
+  DATE_ADDED =	 {Wed Aug 8 09:55:12 2018},
+}
+
+
+@article{skunca-dessimoz-quality-iea-ploscb-2012,
+  author =	 {Nives {\V{S}}kunca and Adrian Altenhoff and
+                  Christophe Dessimoz},
+  title =	 {Quality of Computationally Inferred Gene Ontology
+                  Annotations},
+  DATE_ADDED =	 {Fri Aug 10 12:26:20 2018},
+  journal =	 {PLoS Computational Biology},
+  year =	 {2012},
+  volume =	 {8},
+  number =	 {5},
+  pages =	 {e1002533},
+  doi =		 {10.1371/journal.pcbi.1002533},
+  url =		 {https://doi.org/10.1371/journal.pcbi.1002533},
+}
+
+
+@article{cozzetto-jones-pfp-massive-integration-bmcbioinfo-2013,
+  author =	 {Domenico Cozzetto and Daniel WA Buchan and Kevin
+                  Bryson and David T Jones},
+  title =	 {Protein Function Prediction By Massive Integration
+                  of Evolutionary Analyses and Multiple Data Sources},
+  journal =	 {BMC Bioinformatics},
+  volume =	 14,
+  number =	 {Suppl 3},
+  pages =	 {S1},
+  year =	 2013,
+  doi =		 {10.1186/1471-2105-14-s3-s1},
+  url =		 {https://doi.org/10.1186/1471-2105-14-s3-s1},
+  DATE_ADDED =	 {Mon Aug 20 09:41:34 2018},
+}
+
+@article{Jiang-Gribskov-AptRank-protein-function-prediction-bioinfo-2017,
+  author =	 {Biaobin Jiang and Kyle Kloster and David F. Gleich
+                  and Michael Gribskov},
+  title =	 {Aptrank: an Adaptive Pagerank Model for Protein
+                  Function Prediction on Bi-Relational Graphs},
+  journal =	 {Bioinformatics},
+  volume =	 33,
+  number =	 12,
+  pages =	 {1829-1836},
+  year =	 2017,
+  doi =		 {10.1093/bioinformatics/btx029},
+  url =		 {http://dx.doi.org/10.1093/bioinformatics/btx029},
+  DATE_ADDED =	 {Mon Jul 3 13:57:11 2017},
+}
+
+@article{mostafavi-morris-genemania-gb-2008,
+  author =	 {Sara Mostafavi and Debajyoti Ray and David
+                  Warde-Farley and Chris Grouios and Quaid Morris},
+  title =	 {Genemania: a Real-Time Multiple Association Network
+                  Integration Algorithm for Predicting Gene Function},
+  journal =	 {Genome Biology},
+  volume =	 9,
+  number =	 {Suppl 1},
+  pages =	 {S4},
+  year =	 2008,
+  doi =		 {10.1186/gb-2008-9-s1-s4},
+  url =		 {http://dx.doi.org/10.1186/gb-2008-9-s1-s4},
+  DATE_ADDED =	 {Fri Sep 15 09:26:58 2017},
+}
+
+@article{jiang-radivojac-cafa2-eval-function-prediction-gb-2016,
+  author =	 {Yuxiang Jiang and Tal Ronnen Oron and Wyatt T. Clark
+                  and Asma R. Bankapur and Daniel D'Andrea and Rosalba
+                  Lepore and Christopher S. Funk and Indika Kahanda
+                  and Karin M. Verspoor and Asa Ben-Hur and Da Chen
+                  Emily Koo and Duncan Penfold-Brown and Dennis Shasha
+                  and Noah Youngs and Richard Bonneau and Alexandra
+                  Lin and Sayed M. E. Sahraeian and Pier Luigi
+                  Martelli and Giuseppe Profiti and Rita Casadio and
+                  Renzhi Cao and Zhaolong Zhong and Jianlin Cheng and
+                  Adrian Altenhoff and Nives Skunca and Christophe
+                  Dessimoz and Tunca Dogan and Kai Hakala and Suwisa
+                  Kaewphan and Farrokh Mehryary and Tapio Salakoski
+                  and Filip Ginter and Hai Fang and Ben Smithers and
+                  Matt Oates and Julian Gough and Petri
+                  T{\"o}r{\"o}nen and Patrik Koskinen and Liisa Holm
+                  and Ching-Tai Chen and Wen-Lian Hsu and Kevin Bryson
+                  and Domenico Cozzetto and Federico Minneci and David
+                  T. Jones and Samuel Chapman and Dukka BKC and Ishita
+                  K. Khan and Daisuke Kihara and Dan Ofer and Nadav
+                  Rappoport and Amos Stern and Elena Cibrian-Uhalte
+                  and Paul Denny and Rebecca E. Foulger and Reija
+                  Hieta and Duncan Legge and Ruth C. Lovering and
+                  Michele Magrane and Anna N. Melidoni and Prudence
+                  Mutowo-Meullenet and Klemens Pichler and Aleksandra
+                  Shypitsyna and Biao Li and Pooya Zakeri and Sarah
+                  ElShal and L{\'e}on-Charles Tranchevent and Sayoni
+                  Das and Natalie L. Dawson and David Lee and Jonathan
+                  G. Lees and Ian Sillitoe and Prajwal Bhat and
+                  Tam{\'a}s Nepusz and Alfonso E. Romero and Rajkumar
+                  Sasidharan and Haixuan Yang and Alberto Paccanaro
+                  and Jesse Gillis and Adriana
+                  E. Sede{\~n}o-Cort{\'e}s and Paul Pavlidis and Shou
+                  Feng and Juan M. Cejuela and Tatyana Goldberg and
+                  Tobias Hamp and Lothar Richter and Asaf Salamov and
+                  Toni Gabaldon and Marina Marcet-Houben and Fran
+                  Supek and Qingtian Gong and Wei Ning and Yuanpeng
+                  Zhou and Weidong Tian and Marco Falda and Paolo
+                  Fontana and Enrico Lavezzo and Stefano Toppo and
+                  Carlo Ferrari and Manuel Giollo and Damiano Piovesan
+                  and Silvio C.E. Tosatto and Angela del Pozo and
+                  Jos{\'e} M. Fern{\'a}ndez and Paolo Maietta and
+                  Alfonso Valencia and Michael L. Tress and Alfredo
+                  Benso and Stefano Di Carlo and Gianfranco Politano
+                  and Alessandro Savino and Hafeez Ur Rehman and
+                  Matteo Re and Marco Mesiti and Giorgio Valentini and
+                  Joachim W. Bargsten and Aalt D. J. van Dijk and
+                  Branislava Gemovic and Sanja Glisic and Vladmir
+                  Perovic and Veljko Veljkovic and Nevena Veljkovic
+                  and Danillo C. Almeida-e-Silva and Ricardo
+                  Z. N. Vencio and Malvika Sharan and J{\"o}rg Vogel
+                  and Lakesh Kansakar and Shanshan Zhang and Slobodan
+                  Vucetic and Zheng Wang and Michael J. E. Sternberg
+                  and Mark N. Wass and Rachael P. Huntley and Maria
+                  J. Martin and Claire O'Donovan and Peter N. Robinson
+                  and Yves Moreau and Anna Tramontano and Patricia
+                  C. Babbitt and Steven E. Brenner and Michal Linial
+                  and Christine A. Orengo and Burkhard Rost and Casey
+                  S. Greene and Sean D. Mooney and Iddo Friedberg and
+                  Predrag Radivojac},
+  title =	 {An Expanded Evaluation of Protein Function
+                  Prediction Methods Shows an Improvement in Accuracy},
+  journal =	 {Genome Biology},
+  volume =	 17,
+  number =	 1,
+  pages =	 184,
+  year =	 2016,
+  doi =		 {10.1186/s13059-016-1037-6},
+  url =		 {http://dx.doi.org/10.1186/s13059-016-1037-6},
+  DATE_ADDED =	 {Tue Sep 12 09:23:54 2017},
+}
+
+@article{gligorijevic-bonneau-deepnf-bioinfo-2018,
+  author =	 {Vladimir Gligorijevi{\'c} and Meet Barot and Richard
+                  Bonneau},
+  title =	 {Deepnf: Deep Network Fusion for Protein Function
+                  Prediction},
+  journal =	 {Bioinformatics},
+  volume =	 {nil},
+  number =	 {nil},
+  pages =	 {nil},
+  year =	 2018,
+  doi =		 {10.1093/bioinformatics/bty440},
+  url =		 {https://doi.org/10.1093/bioinformatics/bty440},
+  DATE_ADDED =	 {Fri Jul 13 11:52:05 2018},
+}
+
+
+@article{yannick-bromberg-hfsp-high-speed-function-annotation-bioinfo-2018,
+  author =	 {Yannick Mahlich and Martin Steinegger and Burkhard
+                  Rost and Yana Bromberg},
+  title =	 {Hfsp: High Speed Homology-Driven Function Annotation
+                  of Proteins},
+  journal =	 {Bioinformatics},
+  volume =	 34,
+  number =	 13,
+  pages =	 {i304-i312},
+  year =	 2018,
+  doi =		 {10.1093/bioinformatics/bty262},
+  url =		 {https://doi.org/10.1093/bioinformatics/bty262},
+  DATE_ADDED =	 {Mon Aug 20 11:43:56 2018},
+}
+
+
+@article{buchfink-huson-diamond-nmeth-2014,
+  author =	 {Benjamin Buchfink and Chao Xie and Daniel H Huson},
+  title =	 {Fast and Sensitive Protein Alignment Using Diamond},
+  journal =	 {Nature Methods},
+  volume =	 12,
+  number =	 1,
+  pages =	 {59-60},
+  year =	 2014,
+  doi =		 {10.1038/nmeth.3176},
+  url =		 {https://doi.org/10.1038/nmeth.3176},
+  DATE_ADDED =	 {Mon Aug 20 11:46:19 2018},
+}
+
+
+@article{zhang-han-ripple-fast-topk-rwr-kdd-2015,
+	author = {Zhang, Chao and Jiang, Shan and Chen, Yucheng and Sun, Yidan and Han, Jiawei},
+	title = {{Fast Inbound Top-K Query for Random Walk with Restart}},
+	journal = {Mach. Learn. Knowl. Discov. Databases},
+	volume = {9285},
+	pages = {608--624},
+	year = {2015},
+	month = {Sep},
+	doi = {10.1007/978-3-319-23525-7_37}
+}
+
+% more speed-up methods
+@inproceedings{jeh-widom-scaling-web-search-pagerank-2003,
+  title={Scaling personalized web search},
+  author={Jeh, Glen and Widom, Jennifer},
+  booktitle={Proceedings of the 12th international conference on World Wide Web},
+  pages={271--279},
+  year={2003},
+  organization={Acm}
+}
+@inproceedings{fujiwara-onizuka-efficient-pagrank-kdd-2012,
+  title={Efficient personalized pagerank with accuracy assurance},
+  author={Fujiwara, Yasuhiro and Nakatsuji, Makoto and Yamamuro, Takeshi and Shiokawa, Hiroaki and Onizuka, Makoto},
+  booktitle={Proceedings of the 18th ACM SIGKDD international conference on Knowledge discovery and data mining},
+  journal = {KDD},
+  pages={15--23},
+  year={2012},
+  organization={ACM}
+}
+@inproceedings{fujiwara-onizuka-castanet-pagrank-kdd-2013,
+  title={Efficient ad-hoc search for personalized pagerank},
+  author={Fujiwara, Yasuhiro and Nakatsuji, Makoto and Shiokawa, Hiroaki and Mishima, Takeshi and Onizuka, Makoto},
+  booktitle={Proceedings of the 2013 ACM SIGMOD International Conference on Management of Data},
+  pages={445--456},
+  year={2013},
+  organization={ACM}
+}
+@inproceedings{jung-kang-bepi-billion-scale-rwr-2017,
+  title={Bepi: Fast and memory-efficient method for billion-scale random walk with restart},
+  author={Jung, Jinhong and Park, Namyong and Lee, Sael and Kang, U},
+  booktitle={Proceedings of the 2017 ACM International Conference on Management of Data},
+  pages={789--804},
+  year={2017},
+  organization={ACM}
+}
+
+
+@article{uniprot-consortium-uniprot-nar-2017,
+  author =	 {The UniProt Consortium},
+  title =	 {Uniprot: the Universal Protein Knowledgebase},
+  DATE_ADDED =	 {Mon Aug 20 12:28:22 2018},
+  journal =	 {Nucleic Acids Research},
+  year =	 {2017},
+  volume =	 {45},
+  number =	 {D1},
+  pages =	 {D158-D169},
+  doi =		 {10.1093/nar/gkw1099},
+  url =		 {https://doi.org/10.1093/nar/gkw1099},
+}
+
+@article{gene-ontology-consortium-go-expansion-nar-2017,
+  author =	 {The Gene Ontology Consortium},
+  title =	 {Expansion of the Gene Ontology Knowledgebase and
+                  Resources},
+  DATE_ADDED =	 {Mon Aug 20 12:32:28 2018},
+  journal =	 {Nucleic Acids Research},
+  year =	 {2017},
+  volume =	 {45},
+  number =	 {D1},
+  pages =	 {D331-D338},
+  doi =		 {10.1093/nar/gkw1108},
+  url =		 {https://doi.org/10.1093/nar/gkw1108},
+}
+
+@Article{abb-gotubg-2000,
+   Author="Ashburner, M.  and Ball, C. A.  and Blake, J. A.  and Botstein, D.  and Butler, H.  and Cherry, J. M.  and Davis, A. P.  and Dolinski, K.  and Dwight, S. S.  and Eppig, J. T.  and Harris, M. A.  and Hill, D. P.  and Issel-Tarver, L.  and Kasarskis, A.  and Lewis, S.  and Matese, J. C.  and Richardson, J. E.  and Ringwald, M.  and Rubin, G. M.  and Sherlock, G. ",
+   Title="{{G}ene {O}ntology: tool for the unification of biology. {T}he {G}ene {O}ntology {C}onsortium}",
+   Journal="Nat. Genet.",
+   Year="2000",
+   Volume="25",
+   Number="1",
+   Pages="25--29",
+   Month="May"
+}
+
+
+@article{coskun-koyuturk-chopper-kdd-2016,
+	title = {{Efficient Processing of Network Proximity Queries via Chebyshev Acceleration}},
+	author = {Coskun, Mustafa and Grama, Ananth and Koyuturk, Mehmet},
+	journal = {KDD},
+	year = {2016},
+	doi = {10.1145/2939672.2939828}
+}
+
+@article{land-ussery-20-years-bact-seq-2015,
+  author =	 {Miriam Land and Loren Hauser and Se-Ran Jun and
+                  Intawat Nookaew and Michael R. Leuze and Tae-Hyuk
+                  Ahn and Tatiana Karpinets and Ole Lund and
+                  Guruprased Kora and Trudy Wassenaar and Suresh
+                  Poudel and David W. Ussery},
+  title =	 {Insights From 20 Years of Bacterial Genome
+                  Sequencing},
+  journal =	 {Functional \& Integrative Genomics},
+  volume =	 15,
+  number =	 2,
+  pages =	 {141-161},
+  year =	 2015,
+  doi =		 {10.1007/s10142-015-0433-4},
+  url =		 {https://doi.org/10.1007/s10142-015-0433-4},
+  DATE_ADDED =	 {Thu Aug 30 10:20:38 2018},
+}
+
+
+@article{cowen-sharan-network-propagation-amplifier-2017,
+  author =	 {Lenore Cowen and Trey Ideker and Benjamin J. Raphael
+                  and Roded Sharan},
+  title =	 {Network Propagation: a Universal Amplifier of
+                  Genetic Associations},
+  journal =	 {Nature Reviews Genetics},
+  volume =	 18,
+  number =	 9,
+  pages =	 {551-562},
+  year =	 2017,
+  doi =		 {10.1038/nrg.2017.38},
+  url =		 {https://doi.org/10.1038/nrg.2017.38},
+  DATE_ADDED =	 {Thu Aug 30 11:15:28 2018},
+}
+
+
+@article{karaoz-kasif-whole-genome-annotation-pnas-2004,
+    abstract = {{The advent of high-throughput biology has catalyzed a remarkable improvement in our ability to identify new genes. A large fraction of newly discovered genes have an unknown functional role, particularly when they are specific to a particular lineage or organism. These genes, currently labeled "hypothetical," might support important biological cell functions and could potentially serve as targets for medical, diagnostic, or pharmacogenomic studies. An important challenge to the scientific community is to associate these newly predicted genes with a biological function that can be validated by experimental screens. In the absence of sequence or structural homology to known genes, we must rely on advanced biotechnological methods, such as DNA chips and protein-protein interaction screens as well as computational techniques to assign putative functions to these genes. In this article, we propose an effective methodology for combining biological evidence obtained in several high-throughput experimental screens and integrating this evidence in a way that provides consistent functional assignments to hypothetical genes. We use the visualization method of propagation diagrams to illustrate the flow of functional evidence that supports the functional assignments produced by the algorithm. Our results contain a number of predictions and furnish strong evidence that integration of functional information is indeed a promising direction for improving the accuracy and robustness of functional genomics.}},
+    address = {Bioinformatics Program, Boston University, 48 Cummington Street, Boston, MA 02215, USA.},
+    author = {Karaoz, U. and Murali, T. M. and Letovsky, S. and Zheng, Y. and Ding, C. and Cantor, C. R. and Kasif, S.},
+    citeulike-article-id = {302865},
+    citeulike-linkout-0 = {http://dx.doi.org/10.1073/pnas.0307326101},
+    citeulike-linkout-1 = {http://www.pnas.org/content/101/9/2888.abstract},
+    citeulike-linkout-2 = {http://www.pnas.org/content/101/9/2888.full.pdf},
+    citeulike-linkout-3 = {http://www.pnas.org/cgi/content/abstract/101/9/2888},
+    citeulike-linkout-4 = {http://view.ncbi.nlm.nih.gov/pubmed/14981259},
+    citeulike-linkout-5 = {http://www.hubmed.org/display.cgi?uids=14981259},
+    comment = {For 2011-01-26},
+    day = {2},
+    OPTdoi = {10.1073/pnas.0307326101},
+    OPTissn = {0027-8424},
+    journal = {Proceedings of the National Academy of Sciences},
+    keywords = {gene-function-prediction, new-csb-course, new-csb-course-selected-papers},
+    month = mar,
+    number = {9},
+    pages = {2888--2893},
+    pmid = {14981259},
+    posted-at = {2011-01-26 17:33:10},
+    priority = {2},
+    title = {{Whole-genome annotation by using evidence integration in functional-linkage networks.}},
+    OPTurl = {http://dx.doi.org/10.1073/pnas.0307326101},
+    volume = {101},
+    year = {2004}
+}
+
+@article{zhang-zhang-metago-jmb-2018,
+  author =	 {Chengxin Zhang and Wei Zheng and Peter L. Freddolino
+                  and Yang Zhang},
+  title =	 {Metago: Predicting Gene Ontology of Non-Homologous
+                  Proteins Through Low-Resolution Protein Structure
+                  Prediction and Protein-Protein Network Mapping},
+  journal =	 {Journal of Molecular Biology},
+  volume =	 430,
+  number =	 15,
+  pages =	 {2256-2265},
+  year =	 2018,
+  doi =		 {10.1016/j.jmb.2018.03.004},
+  url =		 {https://doi.org/10.1016/j.jmb.2018.03.004},
+  DATE_ADDED =	 {Mon Sep 3 11:58:57 2018},
+}
+
+
+@article{youngs-bonneau-better-negatives-pfp-bioinfo-2013,
+  author =	 {Noah Youngs and Duncan Penfold-Brown and Kevin Drew
+                  and Dennis Shasha and Richard Bonneau},
+  title =	 {Parametric Bayesian Priors and Better Choice of
+                  Negative Examples Improve Protein Function
+                  Prediction},
+  journal =	 {Bioinformatics},
+  volume =	 29,
+  number =	 9,
+  pages =	 {1190-1198},
+  year =	 2013,
+  doi =		 {10.1093/bioinformatics/btt110},
+  url =		 {http://dx.doi.org/10.1093/bioinformatics/btt110},
+  DATE_ADDED =	 {Fri Dec 1 13:42:35 2017},
+}
+
+@article{cho-peng-mashup-cellsys-2016,
+  author =	 {Hyunghoon Cho and Bonnie Berger and Jian Peng},
+  title =	 {Compact Integration of Multi-Network Topology for
+                  Functional Analysis of Genes},
+  journal =	 {Cell Systems},
+  volume =	 3,
+  number =	 6,
+  pages =	 {540-548.e5},
+  year =	 2016,
+  doi =		 {10.1016/j.cels.2016.10.017},
+  url =		 {http://dx.doi.org/10.1016/j.cels.2016.10.017},
+  DATE_ADDED =	 {Tue Nov 28 10:02:32 2017},
+}
+
+@article{murali-katze-network-based-prediction-hiv-ploscb-2011,
+    abstract = {{HIV} Dependency Factors ({HDFs}) are a class of human proteins that are essential for {HIV} replication, but are not lethal to the host cell when silenced. Three previous genome-wide {RNAi} experiments identified {HDF} sets with little overlap. We combine data from these three studies with a human protein interaction network to predict new {HDFs}, using an intuitive algorithm called {SinkSource} and four other algorithms published in the literature. Our algorithm achieves high precision and recall upon cross validation, as do the other methods. A number of {HDFs} that we predict are known to interact with {HIV} proteins. They belong to multiple protein complexes and biological processes that are known to be manipulated by {HIV}. We also demonstrate that many predicted {HDF} genes show significantly different programs of expression in early response to {SIV} infection in two non-human primate species that differ in {AIDS} progression. Our results suggest that many {HDFs} are yet to be discovered and that they have potential value as prognostic markers to determine pathological outcome and the likelihood of {AIDS} development. More generally, if multiple genome-wide gene-level studies have been performed at independent labs to study the same biological system or phenomenon, our methodology is applicable to interpret these studies simultaneously in the context of molecular interaction networks and to ask if they reinforce or contradict each other. Medicines to cure infectious diseases usually target proteins in the pathogens. Since pathogens have short life cycles, the targeted proteins can rapidly evolve and make the medicines ineffective, especially in viruses such as {HIV}. However, since viruses have very small genomes, they must exploit the cellular machinery of the host to propagate. Therefore, disrupting the activity of selected host proteins may impede viruses. Three recent experiments have discovered hundreds of such proteins in human cells that {HIV} depends upon. Surprisingly, these three sets have very little overlap. In this work, we demonstrate that this discrepancy can be explained by considering physical interactions between the human proteins in these studies. Moreover, we exploit these interactions to predict new dependency factors for {HIV}. Our predictions show very significant overlaps with human proteins that are known to interact with {HIV} proteins and with human cellular processes that are known to be subverted by the virus. Most importantly, we show that proteins predicted by us may play a prominent role in affecting {HIV}-related disease progression in lymph nodes. Therefore, our predictions constitute a powerful resource for experimentalists who desire to discover new human proteins that can control the spread of {HIV}.},
+    author = {Murali, T. M. and Dyer, Matthew D. and Badger, David and Tyler, Brett M. and Katze, Michael G.},
+    citeulike-article-id = {9838302},
+    citeulike-linkout-0 = {http://dx.doi.org/10.1371/journal.pcbi.1002164},
+    day = {22},
+    OPTdoi = {10.1371/journal.pcbi.1002164},
+    journal = {PLoS Comput Biol},
+    keywords = {hiv, network-flow, viral-dependency-factors},
+    month = sep,
+    number = {9},
+    pages = {e1002164+},
+    posted-at = {2011-10-06 19:43:22},
+    priority = {2},
+    publisher = {Public Library of Science},
+    title = {{Network-Based} Prediction and Analysis of {HIV} Dependency Factors},
+    OPTurl = {http://dx.doi.org/10.1371/journal.pcbi.1002164},
+    volume = {7},
+    year = {2011}
+}
+
+@article{wang15_exploit_ontol_graph_predic_spars,
+  author =	 {Sheng Wang and Hyunghoon Cho and ChengXiang Zhai and
+                  Bonnie Berger and Jian Peng},
+  title =	 {Exploiting Ontology Graph for Predicting Sparsely
+                  Annotated Gene Function},
+  journal =	 {Bioinformatics},
+  volume =	 31,
+  number =	 12,
+  pages =	 {i357-i364},
+  year =	 2015,
+  doi =		 {10.1093/bioinformatics/btv260},
+  url =		 {http://dx.doi.org/10.1093/bioinformatics/btv260},
+  DATE_ADDED =	 {Wed Jul 5 10:43:37 2017},
+}
+
+@article{weston-noble-protein-ranking-pnas-2004,
+  author =	 {J. Weston and A. Elisseeff and D. Zhou and
+                  C. S. Leslie and W. S. Noble},
+  title =	 {Protein Ranking: From Local To Global Structure in
+                  the Protein Similarity Network},
+  journal =	 {Proceedings of the National Academy of Sciences},
+  volume =	 101,
+  number =	 17,
+  pages =	 {6559-6563},
+  year =	 2004,
+  doi =		 {10.1073/pnas.0308067101},
+  url =		 {https://doi.org/10.1073/pnas.0308067101},
+  DATE_ADDED =	 {Fri Sep 21 02:36:39 2018},
+}
+
+
+@article{chang-steffen-combrexdb-nar-2015,
+  author =	 {Yi-Chien Chang and Zhenjun Hu and John Rachlin and
+                  Brian P. Anton and Simon Kasif and Richard
+                  J. Roberts and Martin Steffen},
+  title =	 {Combrex-Db: an Experiment Centered Database of
+                  Protein Function: Knowledge, Predictions and
+                  Knowledge Gaps},
+  journal =	 {Nucleic Acids Research},
+  volume =	 44,
+  number =	 {D1},
+  pages =	 {D330-D335},
+  year =	 2015,
+  doi =		 {10.1093/nar/gkv1324},
+  url =		 {https://doi.org/10.1093/nar/gkv1324},
+  DATE_ADDED =	 {Fri Sep 21 10:39:49 2018},
+}
+
+
